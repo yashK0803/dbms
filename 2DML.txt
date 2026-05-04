@@ -1,5 +1,7 @@
 //DML
-
+sudo mysql -u root -p
+create database TEA59;
+use TEA59 ;
 create table Student_Mark(Roll_no int PRIMARY KEY,Name varchar(50),Marks int,Branch varchar(50));
 INSERT INTO Student_Mark VALUES(1, 'Sachin', 90, 'Computer'),(2, 'Vedika', 70, 'Computer'),(3, 'Aarush', 95, 'IT'),(4, 'Jyoti', 60, 'IT');
 select * from Student_Mark;
