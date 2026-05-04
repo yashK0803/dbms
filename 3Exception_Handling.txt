@@ -1,5 +1,7 @@
 //Exception_Handling
-
+sudo mysql -u root -p
+create database TEA59;
+use TEA59 ;
 create table Borrower(Roll_no int,Name varchar(10),DOI date,NameofBook varchar(20),Status varchar(10));
 insert into Borrower values(1,'Sachin','2025-06-25','DBMS','I'),(2,'Ravi','2025-05-25','TOC','I'),(3,'Vedika','2025-04-25','C++','I');
 select * from Borrower;
