@@ -1,5 +1,7 @@
 //DDL
-
+sudo mysql -u root -p
+create database TEA59;
+use TEA59 ;
 create table Customer(Account_no int, Name varchar(20), Balance int, City varchar(10));
 create table Loan(Loan_no int, Name varchar(20), Amount int(10));
 insert into Loan values(1,'Ram',10000),(2,'Ravi',50000),(3,'Dipak',40000);
