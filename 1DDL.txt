@@ -1,0 +1,25 @@
+//DDL
+
+create table Customer(Account_no int, Name varchar(20), Balance int, City varchar(10));
+create table Loan(Loan_no int, Name varchar(20), Amount int(10));
+insert into Loan values(1,'Ram',10000),(2,'Ravi',50000),(3,'Dipak',40000);
+select * from Loan;
+insert into Customer values(1,'Ram',10000,'Pune'),(2,'Ravi',25000,'Nashik'),(3,'Sachin',30000,'Mumbai');
+select * from Customer;
+select Name from Loan union select Name from Customer;
+select Name from Loan intersect select Name from Customer;
+SELECT Name FROM Loan WHERE Name IN (SELECT Name FROM Customer);
+select Name from Loan where Name not in(select Name from Customer);
+select Name from Customer where Name not in(select Name from Loan);
+create view view1 as select * from Customer where Balance > 20000;
+select * from view1;
+create index myindex on Loan(Name);
+show indexes from Loan;
+create index myindex1 on Loan(Name,Amount);
+show indexes from Loan;
+drop index myindex1 on Loan;
+show indexes from Loan;
+select * from Customer order by Balance desc;
+select * from Customer order by Balance asc;
+select Loan_no, Name, Amount, Amount * 020 as Interest from Loan;
+desc Loan;

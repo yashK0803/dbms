@@ -1,0 +1,35 @@
+//Area_Circle
+
+CREATE TABLE tbl_area(radius INT,area FLOAT,dimeter INT,circumference FLOAT);
+
+DROP PROCEDURE IF EXISTS circle;
+
+DELIMITER //
+
+CREATE PROCEDURE circle()
+BEGIN
+    DECLARE radius INT DEFAULT 5;
+    DECLARE dimeter INT;
+    DECLARE area FLOAT;
+    DECLARE circumference FLOAT;
+    DECLARE pi FLOAT DEFAULT 3.14;
+
+    cloop: LOOP
+        SET dimeter = 2 * radius;
+        SET area = pi * radius * radius;
+        SET circumference = 2 * pi * radius;
+
+        INSERT INTO tbl_area(radius, area, dimeter, circumference)
+        VALUES (radius, area, dimeter, circumference);
+
+        SET radius = radius + 1;
+        IF radius > 9 THEN
+            LEAVE cloop;
+        END IF;
+    END LOOP cloop;
+END;
+//
+DELIMITER ;
+
+CALL circle();
+SELECT * FROM tbl_area;

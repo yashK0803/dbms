@@ -1,0 +1,18 @@
+//Crud
+
+db.createCollection("Student")
+db.Student.insertMany([{RollNo : 1, Name : "Ram", City : "Nashik"},{RollNo : 2, Name : "Ravi", City : "Pune"},{RollNo : 3, Name : "Sahil", City : "Mumbai"}])
+db.Student.find()
+db.Student.find().pretty()
+db.Student.insertOne({RollNo : 1, Name : "Ram", City : "Nashik", Pincode : 422005})
+db.Student.find()
+db.Subjects.insertMany([{id : 11, Name : "DBMS", Dept : "Computer"},{id : 12, Name : "OOP", Dept : "Computer"}])
+db.Subjects.find().pretty()
+db.Subjects.drop()
+show collections;
+db.Subjects.insertMany([{id : 11, Name : "DBMS", Dept : "Computer"},{id : 12, Name : "OOP", Dept : "Computer"}])
+show collections;
+db.Subjects.update({'Dept' : 'Computer'},{$set:{'Branch' : 'Computer'}},{multi : true}) 
+db.Subjects.find().pretty()
+db.Student.save({ RollNo: 5, Name: "Akash", City: "Mumbai", Marks: 75 })
+db.Student.find({ Marks: { $gte: 60, $lte: 90 } })

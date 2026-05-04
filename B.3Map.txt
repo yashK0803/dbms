@@ -1,0 +1,11 @@
+//Map
+
+db.createCollection("TE")
+db.TE.insertOne({Rollno:1,Marks:98,Div:'B'})
+db.TE.insertOne({Rollno:2,Marks:90,Div:'A'})
+db.TE.insertOne({Rollno:3,Marks:84,Div:'A'})
+db.TE.insertOne({Rollno:4,Marks:70,Div:'A'})
+db.TE.find()
+db.TE.mapReduce(function() {emit(this.Rollno,this.Marks);},function(key,values){return Array.sum(values)},{query:{Div:"A"},out:"Total_Marks"})
+db.TE.aggregate([{ $match: { Div: "A" } },{ $group: { _id: "$Rollno", totalMarks: { $sum: "$Marks" } } } ])
+db.TE.aggregate([{ $group: { _id: "$Div", totalMarks: { $sum: "$Marks" } } }])

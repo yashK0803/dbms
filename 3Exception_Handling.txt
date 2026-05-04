@@ -1,0 +1,48 @@
+//Exception_Handling
+
+create table Borrower(Roll_no int,Name varchar(10),DOI date,NameofBook varchar(20),Status varchar(10));
+insert into Borrower values(1,'Sachin','2025-06-25','DBMS','I'),(2,'Ravi','2025-05-25','TOC','I'),(3,'Vedika','2025-04-25','C++','I');
+select * from Borrower;
+create table Fine(Roll_no int,sDate date,Amt int);
+select *from Fine;
+
+drop procedure if exists p_fine;
+
+    delimiter //
+
+    create procedure p_fine(IN rno int,IN  bname varchar(20))
+    begin
+       declare d1 date;    
+       declare daycnt int;
+       declare fine_amt int;
+   
+        SELECT DOI  into d1 FROM Borrower  WHERE Roll_no = rno and  NameofBook  = bname;
+     
+        select DATEDIFF(now(),d1) into daycnt;
+       
+         if(daycnt >= 15 and daycnt <= 30) then
+         
+               set fine_amt := daycnt * 5;
+           
+                 insert into Fine(Roll_no,sDate,Amt) values (rno,now(),fine_amt);
+                                                   
+                 update Borrower set status = 'R' where Roll_no = rno;
+                 
+       ELSEIF(daycnt > 30) then
+       
+                set fine_amt := daycnt * 50;
+           
+                 insert into Fine(Roll_no,sDate,Amt) values (rno,now(),fine_amt);
+                                                   
+                 update Borrower set status = 'R' where Roll_no = rno;
+                 
+         else       
+                          update Borrower set status = 'R' where Roll_no = rno;               
+         end if;    
+     end;
+//
+
+delimiter ;
+
+call p_fine(1,'DBMS');
+select *from Fine;
