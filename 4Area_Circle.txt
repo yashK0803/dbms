@@ -1,5 +1,5 @@
 //Area_Circle
-sudo mysql -u root -p
+mysql -u root 
 create database TEA59;
 use TEA59 ;
 CREATE TABLE tbl_area(radius INT,area FLOAT,dimeter INT,circumference FLOAT);
